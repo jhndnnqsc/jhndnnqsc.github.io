@@ -39,6 +39,7 @@ function writeMessage(message) {
 
 layer.add(text);
 
+/*
 var table = new Konva.Rect({
   x: stage.width() / 2 - twidth/2,
   y: stage.height() / 2 + theight / 2,
@@ -49,11 +50,28 @@ var table = new Konva.Rect({
   strokeWidth: 1,
   draggable: true,
 })
+*/
 
-var tableTr = new Konva.Transformer();
-layer.add(table);
-layer.add(tableTr);
-tableTr.nodes([table]);
+var imageObj = new Image();
+imageObj.onload = () =>
+{
+  var table = new Konva.Image({
+    x: stage.width() / 2 - twidth/2,
+    y: stage.height() / 2 + theight / 2,
+    image: imageObj,
+    width: 1920/4,
+    height: 880/4,
+    draggable: true,
+  })
+  layer.add(table);
+  var tableTr = new Konva.Transformer();
+  tableTr.nodes([table]);
+  layer.add(table);
+  layer.add(tableTr);
+  };
+
+imageObj.src = "./confroom.png"
+
 
 //layer.add(table);
 
@@ -115,12 +133,13 @@ wedge.on('pointerleave', function(){isWedgeDown = false; });
 wedge.on('pointerup', function(){isWedgeDown = false; });
 
 
+var camlayer = new Konva.Layer();
 
 // add the shape to the layer
-layer.add(wedge);
+camlayer.add(wedge);
 
 // add the layer to the stage
-stage.add(layer);
+stage.add(camlayer);
 
 update();
  

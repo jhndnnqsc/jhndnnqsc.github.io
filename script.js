@@ -52,10 +52,12 @@ var table = new Konva.Rect({
 })
 */
 
+var tableTr;
+var table;
 var imageObj = new Image();
 imageObj.onload = () =>
 {
-  var table = new Konva.Image({
+  table = new Konva.Image({
     x: stage.width() / 2 - twidth/2,
     y: stage.height() / 2 + theight / 2,
     image: imageObj,
@@ -64,14 +66,22 @@ imageObj.onload = () =>
     draggable: true,
   })
   layer.add(table);
-  var tableTr = new Konva.Transformer();
-  tableTr.nodes([table]);
+  tableTr = new Konva.Transformer();
+//  tableTr.nodes([table]);
   layer.add(table);
   layer.add(tableTr);
   };
 
 imageObj.src = "./confroom.png"
 
+stage.on('click tap', function (e) {
+  // if click on empty area - remove all selections
+  if (e.target === stage) {
+    tableTr.nodes([]);
+    return;
+  }
+  if( e.target === table) tableTr.nodes([e.target]);
+});
 
 //layer.add(table);
 

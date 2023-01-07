@@ -41,7 +41,7 @@ layer.add(text);
 
 var table = new Konva.Rect({
   x: stage.width() / 2 - twidth/2,
-  y: stage.height() / 2 - theight/2,
+  y: stage.height() / 2 + theight / 2,
   width : twidth,
   height: theight,
   fill: "#EEEEEE",

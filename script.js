@@ -44,12 +44,18 @@ var table = new Konva.Rect({
   y: stage.height() / 2 + theight / 2,
   width : twidth,
   height: theight,
-  fill: "#EEEEEE",
+  fill: "#AAAABB",
   stroke: "black",
-  strokeWidth: 1
+  strokeWidth: 1,
+  draggable: true,
 })
 
+var tableTr = new Konva.Transformer();
 layer.add(table);
+layer.add(tableTr);
+tableTr.nodes([table]);
+
+//layer.add(table);
 
 var wedge = new Konva.Wedge({
   x: stage.width() / 2,
@@ -144,4 +150,5 @@ window.addEventListener("keyup", (event) =>{
     }
 });
 
+layer.batchDraw();
 

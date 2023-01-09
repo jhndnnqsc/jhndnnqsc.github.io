@@ -1,5 +1,16 @@
 const grid = {
 
+  size: 15,
+
+  getLineColor: function(value)
+  {
+    var step = value / this.size;
+    if(step % 10 === 0 ) return "#8CB";
+    else if( step % 5 === 0 ) return "#BEB";
+    return "#CFC";
+
+  },
+
   get : function()
   {
     var layer = new Konva.Layer();
@@ -15,18 +26,16 @@ const grid = {
     });
     layer.add(background);
 
-
-    var size = 15;
     var x = 0;
     while(x < w)
     {
       layer.add( new Konva.Line({
         points: [x, 0, x, h],
-        stroke: "#BEB",
+        stroke: this.getLineColor(x),
         strokeWidth: 1,
         listening: false,
       }));
-      x += size;
+      x += this.size;
     }
 
     var y = 0;
@@ -34,11 +43,11 @@ const grid = {
     {
       layer.add( new Konva.Line({
         points: [0, y, w, y],
-        stroke: "#BEB",
+        stroke: this.getLineColor(y),
         strokeWidth: 1,
         listening: false,
       }));
-      y += size;
+      y += this.size;
     }
 
     return layer;

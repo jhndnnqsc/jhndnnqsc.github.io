@@ -18,6 +18,8 @@ var stage = new Konva.Stage({
   height: height,
 });
 
+stage.add(grid.get());
+
 var layer = new Konva.Layer();
 stage.add(layer);
 
